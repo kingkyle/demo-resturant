@@ -1,11 +1,14 @@
 <template>
-  <h1>Hello World</h1>
+  <Header />
 </template>
 
 <script>
+import Header from "./components/Header/Header";
 export default {
   name: "App",
-  components: {},
+  components: {
+    Header,
+  },
 };
 </script>
 
@@ -29,6 +32,17 @@ h6,
 p {
   margin: 0;
   padding: 0;
+}
+
+.main-container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.container {
+  padding: 2em;
+  max-width: 500px;
+  // margin: 0 auto;
 }
 
 .dot {
