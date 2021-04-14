@@ -35,13 +35,23 @@ export default {
     return { storeData: null, content: null };
   },
   async beforeMount() {
-    const res = await fetch(
-      "https://us-central1-grigora-alt.cloudfunctions.net/details",
-      { mode: "no-cors" }
-    );
-    const data = await res.json();
-    this.storeData = data;
-    this.content = apiData.all_data[0];
+    try {
+      const res = await fetch(
+        "https://us-central1-grigora-alt.cloudfunctions.net/details",
+        { mode: "no-cors" }
+      );
+      if (res.ok) {
+        const data = await res.json();
+        this.storeData = !!data;
+        this.content = apiData.all_data[0];
+      } else {
+        this.storeData = apiData;
+        this.content = apiData.all_data[0];
+      }
+    } catch (error) {
+      this.storeData = apiData;
+      this.content = apiData.all_data[0];
+    }
   },
   provide() {
     return {
