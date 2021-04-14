@@ -1,5 +1,11 @@
 <template>
   <Modal :isOpen="isOpen" maxHeight="95vh" overflowY="hidden">
+    <template v-slot:header>
+      <p class="c-red text-bold text-center notice" v-if="data.status === '0'">
+        This item is currently not available to be ordered. You can still choose
+        other available items
+      </p>
+    </template>
     <template v-slot:default>
       <div class="modal-body">
         <div
@@ -12,23 +18,47 @@
         <h2 class="title">{{ data.name }}</h2>
         <p class="desc text-center text-sm">{{ data.description }}</p>
         <div class="r-r">
-          <div class="rating"><i class="far fa-star"></i>5</div>
+          <div class="rating">
+            <i class="far fa-star"></i>{{ data.avg_ratings }}
+          </div>
           <div class="review">Show Reviews</div>
         </div>
 
         <div class="add-items">
-          <div class="name">
-            <h4>Toppings [Select a maximum of 2 item(s)]</h4>
-            <p class="text-sm text-muted">Optional</p>
+          <div v-for="category in data.item_categories" :key="category.id">
+            <div class="name">
+              <h4>
+                {{ category.name }} [Select a maximum of
+                {{ category.max }} item(s)]
+              </h4>
+              <p class="text-sm text-muted" v-if="category.required === '0'">
+                Optional
+              </p>
+            </div>
+            <div v-for="item in category.item_sub_category" :key="item.id">
+              <CheckBox
+                :name="item.name"
+                :amount="item.add_on_price"
+                :key="item.id"
+                @add-item="addonItem"
+                @remove-item="removeAddonItem"
+              />
+            </div>
           </div>
-          <CheckBox />
         </div>
-        <div class="remove-items">
+        <div class="remove-items" v-if="data.item_removeables.length > 0">
           <div class="name">
             <h4>Removeable Items</h4>
             <p>Remove items you don't want</p>
           </div>
-          <CheckBox name="Apple" amount="400" />
+          <div v-for="item in data.item_removeables" :key="item.id">
+            <CheckBox
+              :name="item.name"
+              :amount="item.add_on_price"
+              :remove="true"
+              :key="item.id"
+            />
+          </div>
         </div>
       </div>
     </template>
@@ -44,7 +74,9 @@
           </div>
         </div>
         <div class="add-to-cart">
-          <button>Add to Cart - N24</button>
+          <button :disabled="data.status === '0' ? true : false">
+            Add to Cart - N{{ addTotal }}
+          </button>
         </div>
       </div>
     </template>
@@ -64,8 +96,16 @@ export default {
     data: Object,
     isOpen: Boolean,
   },
+  mounted() {
+    this.total = Number(this.data.price);
+  },
   data() {
-    return { counter: 1, total: 24 };
+    return { counter: 1, total: 0, addon: 0 };
+  },
+  computed: {
+    addTotal() {
+      return (this.total + this.addon) * this.counter;
+    },
   },
   methods: {
     addCounter() {
@@ -77,16 +117,36 @@ export default {
         this.counter = this.counter - 1;
       }
     },
+
+    addonItem(id) {
+      this.addon = this.addon + id;
+    },
+
+    removeAddonItem(id) {
+      this.addon = this.addon - id;
+    },
   },
 };
 </script>
 
 <style lang="scss" scoped>
+.notice {
+  margin: 0em 0 3em 0;
+}
 .modal-body {
   height: 100%;
-  overflow-y: auto;
-  max-height: 70vh;
+  overflow-y: scroll;
+  height: 70vh;
   padding: 1em;
+  &::-webkit-scrollbar {
+    display: block;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #888;
+  }
+  &::-webkit-scrollbar {
+    width: 0.7em;
+  }
 
   .image {
     padding: 1em 0;
@@ -125,6 +185,7 @@ export default {
 
   .add-items {
     margin-top: 4em;
+    margin-bottom: 7em;
     .name {
       display: flex;
       justify-content: space-between;
@@ -137,7 +198,6 @@ export default {
   }
   .remove-items {
     border-top: 1px solid #ddd;
-    margin-top: 4em;
     margin-bottom: 10em;
     .name {
       padding: 0.5em 0;
@@ -224,6 +284,10 @@ export default {
       box-shadow: 0px 2px 10px 1px rgba(51, 51, 51, 0.301);
       font-weight: 500;
       font-size: 14px;
+      &:disabled {
+        cursor: no-drop;
+        opacity: 0.8;
+      }
     }
   }
 }

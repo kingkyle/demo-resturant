@@ -181,7 +181,6 @@ export default {
         border-bottom: 1px solid rgba(221, 221, 221, 0.452);
         .store-title {
           font-size: 1.8em;
-          text-align: center;
           margin-bottom: 0.7em;
         }
         .store-rev {
@@ -274,7 +273,11 @@ export default {
 
 .list-item {
   text-align: left;
+  cursor: pointer;
   padding: 1em;
+  &:hover {
+    background: #ddd;
+  }
 }
 
 @media only screen and (min-width: 500px) {
@@ -302,6 +305,67 @@ export default {
         }
         .order-menu {
           width: 50%;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .hero-section {
+    .hero-flex {
+      display: flex;
+      padding: 0 2em;
+
+      .store-logo {
+        padding-right: 1em;
+      }
+      .store-info {
+        text-align: left;
+
+        .store-details {
+          .store-title {
+            font-size: 2.4em;
+            margin-bottom: 0.1em;
+          }
+          .store-rev {
+            justify-content: flex-start;
+            font-size: 14px;
+            margin: 2.3em 0;
+          }
+          .store-time {
+            justify-content: flex-start;
+          }
+        }
+        .order-details {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+
+          .cost {
+            margin-top: 0.2em;
+            ul {
+              li {
+                .title {
+                  text-align: left;
+                  font-size: 14px;
+                }
+                .info {
+                  font-size: 20px;
+                  font-weight: 500;
+                  text-align: left;
+                }
+              }
+            }
+          }
+          .type {
+            width: 40%;
+            margin-top: 0.3em;
+          }
+        }
+        .order-menu {
+          width: 25%;
+          margin: auto 0;
         }
       }
     }

@@ -36,4 +36,16 @@ export default {
     margin-bottom: 0.5em;
   }
 }
+@media only screen and (min-width: 768px) {
+  .category-list {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    overflow-x: auto;
+    .list-item {
+      width: 45%;
+      margin-right: 1em;
+    }
+  }
+}
 </style>

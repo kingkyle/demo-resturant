@@ -138,4 +138,61 @@ footer {
     }
   }
 }
+
+@media only screen and (min-width: 768px) {
+  footer {
+    .footer-content {
+      display: flex;
+      padding: 3em 0;
+      justify-content: space-between;
+      align-items: center;
+      width: 1000px;
+      margin: 0 auto;
+      .download-app {
+        width: 170px;
+        margin: 3em 0 0 0;
+        .app-link {
+          margin-bottom: 1.5em;
+          img {
+            display: block;
+            width: 100%;
+          }
+        }
+      }
+    }
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      width: 800px;
+      margin: 0 auto;
+      margin-top: 6em;
+
+      .copyright {
+        display: flex;
+        color: rgb(134, 132, 132);
+        align-items: center;
+        img {
+          width: auto;
+          height: 30px;
+          margin-right: 2em;
+        }
+        p {
+          font-size: 11px;
+        }
+      }
+      .socials {
+        width: 150px;
+        margin-right: 100px;
+        cursor: pointer;
+        margin: 0.5em 0;
+        ul {
+          display: flex;
+          list-style: none;
+          justify-content: space-between;
+          color: #fff;
+        }
+      }
+    }
+  }
+}
 </style>

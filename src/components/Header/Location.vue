@@ -178,4 +178,29 @@ export default {
     }
   }
 }
+
+@media only screen and (min-width: 768px) {
+  .l-wrapper {
+    width: 20%;
+
+    .drop-wrapper {
+      position: absolute;
+      height: auto;
+      top: auto;
+      left: auto;
+      width: auto;
+      background: none;
+
+      .location-drop {
+        position: absolute;
+        top: auto;
+        left: auto;
+        margin-top: 17px;
+        width: 300px;
+        background: #fff;
+        transform: translate(0, 0);
+      }
+    }
+  }
+}
 </style>

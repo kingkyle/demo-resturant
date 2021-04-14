@@ -79,7 +79,7 @@ export default {
     handleScroll() {
       const y = Math.round(window.scrollY);
       this.categoryList.forEach((c) => {
-        if (y >= c.offset - 10 && y <= c.offset + 10) {
+        if (y >= c.offset - 20 && y <= c.offset + 20) {
           return this.activeLink(c.linkId);
         }
       });
@@ -143,6 +143,18 @@ export default {
       display: none;
       border-left: 1px solid rgb(77, 76, 76);
       padding: 0.2em 1.5em;
+    }
+  }
+}
+@media only screen and (min-width: 768px) {
+  .m-header {
+    .m-header-flex {
+      .m-links {
+        width: 75%;
+      }
+      .m-cart {
+        display: block;
+      }
     }
   }
 }

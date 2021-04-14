@@ -8,10 +8,10 @@
           ref="modalRef"
         >
           <div class="modal-header">
-            <div class="header-text">
-              <!-- <slot name="header"></slot> -->
-            </div>
             <div class="close" @click="closeModal">&times;</div>
+          </div>
+          <div class="header-text">
+            <slot name="header"></slot>
           </div>
           <div class="modal-body">
             <slot></slot>
@@ -127,7 +127,7 @@ export default {
       .modal-header {
         align-items: center;
         display: flex;
-        justify-content: space-between;
+        justify-content: flex-end;
         padding: 1em;
         .close {
           width: 30px;
@@ -144,10 +144,26 @@ export default {
           }
         }
       }
+      .header-text {
+        padding: 0 1.5em;
+      }
 
       .modal-body {
         color: #333;
         padding: 0 1em;
+      }
+    }
+  }
+}
+@media only screen and (min-width: 768px) {
+  .overlay {
+    .modal-wrapper {
+      .modal-container {
+        width: 500px;
+        height: 100%;
+        min-height: auto;
+        max-height: 85vh;
+        border-radius: 5px;
       }
     }
   }

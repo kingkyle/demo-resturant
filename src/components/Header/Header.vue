@@ -64,4 +64,19 @@ header {
     }
   }
 }
+
+@media only screen and (min-width: 768px) {
+  header {
+    padding: 0.5em 4em;
+    .header-search-auth {
+      display: flex;
+      align-items: center;
+      width: 50%;
+    }
+
+    .logo {
+      height: 40px;
+    }
+  }
+}
 </style>

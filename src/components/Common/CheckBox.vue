@@ -7,10 +7,10 @@
       <div class="checked">
         <i class="far fa-check-square"></i>
       </div>
-      <p class="name">Straw</p>
+      <p class="name">{{ name }}</p>
     </div>
-    <div class="amount">
-      <p>+N500</p>
+    <div class="amount" v-if="!remove">
+      <p>+N{{ amount }}</p>
     </div>
   </div>
 </template>
@@ -21,14 +21,20 @@ export default {
   props: {
     name: String,
     amount: String,
+    remove: Boolean,
   },
   data() {
-    return { isChecked: false };
+    return { isChecked: false, item: null };
   },
   methods: {
     handleCheck() {
       this.isChecked = !this.isChecked;
-      this.$emit("check-item");
+      if (this.isChecked) {
+        this.$emit("add-item", Number(this.amount));
+      }
+      if (!this.isChecked) {
+        this.$emit("remove-item", Number(this.amount));
+      }
     },
   },
 };

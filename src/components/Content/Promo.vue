@@ -29,4 +29,10 @@ export default {
   text-align: center;
   font-weight: 600;
 }
+@media only screen and (min-width: 768px) {
+  .promo {
+    width: 30%;
+    margin-top: 1em;
+  }
+}
 </style>

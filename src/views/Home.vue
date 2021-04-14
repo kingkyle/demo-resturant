@@ -66,4 +66,18 @@ export default {
     width: calc(30% - 3em);
   }
 }
+@media only screen and (min-width: 768px) {
+  .main {
+    display: flex;
+
+    .content {
+      padding: 0.5em 3em;
+      width: 75%;
+    }
+    .cart {
+      display: block;
+      width: calc(30% - 3.5em);
+    }
+  }
+}
 </style>

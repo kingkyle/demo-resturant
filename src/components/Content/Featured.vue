@@ -42,4 +42,11 @@ export default {
     margin-right: 1em;
   }
 }
+@media only screen and (min-width: 768px) {
+  .featured-list {
+    .list-item {
+      width: 35%;
+    }
+  }
+}
 </style>

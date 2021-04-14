@@ -24,6 +24,16 @@ body {
   padding: 0;
   font-family: muli, sans-serif;
   font-size: 14px;
+  box-sizing: border-box;
+  &::-webkit-scrollbar {
+    display: block;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #888;
+  }
+  &::-webkit-scrollbar {
+    width: 0.7em;
+  }
 }
 
 h1,
@@ -46,6 +56,12 @@ p {
   padding: 2em;
   max-width: 500px;
   margin: 0 auto;
+}
+
+@media only screen and (min-width: 768px) {
+  .container {
+    max-width: 1400px;
+  }
 }
 
 .dot {
