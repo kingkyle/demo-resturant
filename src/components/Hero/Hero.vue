@@ -276,4 +276,35 @@ export default {
   text-align: left;
   padding: 1em;
 }
+
+@media only screen and (min-width: 500px) {
+  .hero-section {
+    .hero-flex {
+      .store-info {
+        .order-details {
+          .type {
+            margin-top: 2em;
+            ul {
+              li {
+                &:first-child {
+                  width: 30%;
+                }
+                &:nth-child(2) {
+                  width: 40%;
+                }
+                &:last-child {
+                  display: block;
+                  width: 30%;
+                }
+              }
+            }
+          }
+        }
+        .order-menu {
+          width: 50%;
+        }
+      }
+    }
+  }
+}
 </style>

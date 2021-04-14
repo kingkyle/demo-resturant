@@ -17,7 +17,9 @@
 <script>
 import Hero from "../components/Hero/Hero";
 import SubHeader from "../components/Header/SubHeader";
+import Content from "../components/Content/Content";
 import Footer from "../components/Header/Footer";
+import Cart from "../components/Content/Cart";
 import { apiData } from "../utils/apiData";
 import { computed } from "@vue/runtime-core";
 export default {
@@ -25,6 +27,8 @@ export default {
   components: {
     Hero,
     SubHeader,
+    Content,
+    Cart,
     Footer,
   },
   data() {
@@ -40,7 +44,26 @@ export default {
       contentData: computed(() => this.content),
     };
   },
+  methods: {
+    handleContent(id) {
+      this.content = this.storeData.all_data[id];
+    },
+  },
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.container {
+  padding: 0;
+}
+.main {
+  display: block;
+  .content {
+    padding: 0.5em 1.5em;
+  }
+  .cart {
+    display: none;
+    width: calc(30% - 3em);
+  }
+}
+</style>

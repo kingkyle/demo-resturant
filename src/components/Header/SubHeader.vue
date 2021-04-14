@@ -79,7 +79,7 @@ export default {
     handleScroll() {
       const y = Math.round(window.scrollY);
       this.categoryList.forEach((c) => {
-        if (y >= c.offset - 20 && y <= c.offset + 20) {
+        if (y >= c.offset - 10 && y <= c.offset + 10) {
           return this.activeLink(c.linkId);
         }
       });

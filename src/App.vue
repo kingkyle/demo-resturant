@@ -45,7 +45,7 @@ p {
 .container {
   padding: 2em;
   max-width: 500px;
-  // margin: 0 auto;
+  margin: 0 auto;
 }
 
 .dot {
