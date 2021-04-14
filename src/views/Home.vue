@@ -1,11 +1,23 @@
 <template>
-  <Hero />
+  <Hero @menu-select="handleContent" />
   <SubHeader />
+  <div class="container">
+    <div class="main">
+      <div class="content">
+        <Content />
+      </div>
+      <div class="cart">
+        <Cart />
+      </div>
+    </div>
+  </div>
+  <Footer />
 </template>
 
 <script>
 import Hero from "../components/Hero/Hero";
 import SubHeader from "../components/Header/SubHeader";
+import Footer from "../components/Header/Footer";
 import { apiData } from "../utils/apiData";
 import { computed } from "@vue/runtime-core";
 export default {
@@ -13,6 +25,7 @@ export default {
   components: {
     Hero,
     SubHeader,
+    Footer,
   },
   data() {
     return { storeData: null, content: null };
