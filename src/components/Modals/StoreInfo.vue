@@ -87,6 +87,11 @@ export default {
       font-size: 20px;
       width: 10%;
     }
+    .info {
+      .title {
+        margin-bottom: 0.3em;
+      }
+    }
     &:last-child {
       margin-bottom: 1.5em;
     }
