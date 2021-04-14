@@ -38,7 +38,7 @@ export default {
 header {
   background: #fff;
   height: 50px;
-  padding: 0.5em 1em;
+  padding: 0.5em 2em;
   box-shadow: 1px 1px 1px #ddd;
   position: sticky;
   top: 0;

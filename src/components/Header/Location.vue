@@ -5,7 +5,12 @@
       Wuse 2, Abuja
       <i class="fas fa-angle-down"></i>
     </div>
-    <div class="drop-wrapper" v-if="isOpen">
+    <div
+      class="drop-wrapper"
+      v-if="isOpen"
+      @click="close($event)"
+      ref="dropWrapper"
+    >
       <div class="location-drop">
         <div class="search">
           <div class="search-input">
@@ -32,13 +37,31 @@
 <script>
 export default {
   name: "Location",
+  data() {
+    return { isOpen: false, searchText: "" };
+  },
+  methods: {
+    toggle() {
+      this.isOpen = !this.isOpen;
+    },
+    close(e) {
+      if (this.$refs.dropWrapper == e.target) {
+        this.isOpen = false;
+      }
+    },
+  },
+  computed: {
+    isSmall() {
+      return this.searchText.trim().length !== 0 ? true : false;
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
 @import "../../assets/css/_root.scss";
 .l-wrapper {
-  width: 50%;
+  width: 60%;
   .location {
     height: 40px;
     width: 100%;
@@ -65,7 +88,7 @@ export default {
     top: 0;
     left: 0;
     width: 100%;
-    background: #ddd;
+    background: rgba(20, 20, 20, 0.308);
     z-index: 999;
     .location-drop {
       box-shadow: 1px 1px 2px 0 rgba(51, 51, 51, 0.267);
@@ -75,7 +98,7 @@ export default {
       left: 50%;
       transform: translate(-50%, -50%);
       border-radius: 5px;
-      width: auto;
+      width: 90%;
       margin-top: 17px;
 
       .search {
