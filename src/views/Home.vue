@@ -1,13 +1,15 @@
 <template>
-  <Hero @menu-select="handleContent" />
-  <SubHeader />
-  <div class="container">
-    <div class="main">
-      <div class="content">
-        <Content />
-      </div>
-      <div class="cart">
-        <Cart />
+  <div v-if="!loading">
+    <Hero @menu-select="handleContent" />
+    <SubHeader />
+    <div class="container">
+      <div class="main">
+        <div class="content">
+          <Content />
+        </div>
+        <div class="cart">
+          <Cart />
+        </div>
       </div>
     </div>
   </div>
@@ -32,25 +34,23 @@ export default {
     Footer,
   },
   data() {
-    return { storeData: null, content: null };
+    return { storeData: null, content: null, loading: false };
   },
   async beforeMount() {
+    this.loading = true;
     try {
       const res = await fetch(
         "https://us-central1-grigora-alt.cloudfunctions.net/details",
         { mode: "no-cors" }
       );
-      if (res.ok) {
-        const data = await res.json();
-        this.storeData = !!data;
-        this.content = apiData.all_data[0];
-      } else {
-        this.storeData = apiData;
-        this.content = apiData.all_data[0];
-      }
+      const data = await res.json();
+      this.storeData = data;
+      this.content = apiData.all_data[0];
+      this.loading = false;
     } catch (error) {
       this.storeData = apiData;
       this.content = apiData.all_data[0];
+      this.loading = false;
     }
   },
   provide() {

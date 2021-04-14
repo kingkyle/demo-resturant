@@ -22,13 +22,10 @@
               <div class="dot"></div>
               <div class="distance">1.58 KM away</div>
             </div>
-            <div class="store-time">
-              <p>CLOSED</p>
+            <div :class="['store-time', getStoreState]">
+              <p>{{ getStoreState }}</p>
               <div class="dot"></div>
-              <div class="more-info">
-                <i class="far fa-question-circle"></i>
-                MORE INFO
-              </div>
+              <StoreInfo />
             </div>
           </div>
           <div class="order-details">
@@ -127,12 +124,15 @@
 import DropList from "../Common/DropList";
 import GroupOrder from "../Modals/GroupOrder";
 import BookTable from "../Modals/BookTable";
+import StoreInfo from "../Modals/StoreInfo";
+import { storeStatus } from "../../utils/common";
 export default {
   name: "Hero",
   components: {
     DropList,
     GroupOrder,
     BookTable,
+    StoreInfo,
   },
   data() {
     return {
@@ -141,6 +141,14 @@ export default {
     };
   },
   inject: ["demoData"],
+  computed: {
+    getStoreState() {
+      return storeStatus(
+        this.demoData.value.opening_time,
+        this.demoData.value.closing_time
+      );
+    },
+  },
   methods: {
     handleDelivery(id) {
       this.delivery = id;
@@ -200,8 +208,22 @@ export default {
           width: 100%;
           align-items: center;
           justify-content: center;
-          p {
-            color: red;
+          &.OPEN {
+            p {
+              color: rgb(24, 179, 24);
+              font-weight: 600;
+            }
+          }
+          &.CLOSE {
+            p {
+              color: red;
+            }
+          }
+          .more-info {
+            cursor: pointer;
+            &:hover {
+              background: rgba(255, 255, 255, 0.151);
+            }
           }
         }
       }
@@ -334,6 +356,7 @@ export default {
             margin: 2.3em 0;
           }
           .store-time {
+            font-size: 15px;
             justify-content: flex-start;
           }
         }
