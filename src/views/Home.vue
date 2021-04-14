@@ -34,8 +34,13 @@ export default {
   data() {
     return { storeData: null, content: null };
   },
-  beforeMount() {
-    this.storeData = apiData;
+  async beforeMount() {
+    const res = await fetch(
+      "https://us-central1-grigora-alt.cloudfunctions.net/details",
+      { mode: "no-cors" }
+    );
+    const data = await res.json();
+    this.storeData = data;
     this.content = apiData.all_data[0];
   },
   provide() {
