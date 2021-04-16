@@ -16,6 +16,7 @@ button {
   color: #fff;
   height: 40px;
   text-align: center;
+  font-family: inherit;
   font-size: 13px;
   cursor: pointer;
   outline: none;
