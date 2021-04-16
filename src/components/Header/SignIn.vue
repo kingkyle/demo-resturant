@@ -17,6 +17,7 @@ export default {
   display: flex;
   justify-content: flex-start;
   button {
+    font-family: inherit;
     display: block;
     height: 40px;
     background: #be5241;
