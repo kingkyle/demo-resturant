@@ -2,7 +2,7 @@
   <div class="hero-section">
     <div class="container">
       <div class="hero-flex">
-        <div>
+        <div class="logo-flex">
           <img :src="demoData.value.restaurant_image" class="store-logo" />
         </div>
         <div class="store-info">
@@ -338,13 +338,11 @@ export default {
     .hero-flex {
       display: flex;
       padding: 0 2em;
-
       .store-logo {
-        padding-right: 1em;
+        margin-right: 2em;
       }
       .store-info {
         text-align: left;
-
         .store-details {
           .store-title {
             font-size: 2.4em;
